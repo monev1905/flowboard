@@ -240,9 +240,27 @@ main.main {
 .team-card-head { display: flex; align-items: center; gap: var(--space-3); }
 .team-card-head .name { font-weight: 600; }
 .team-card-head .role { font-size: var(--font-size-sm); color: var(--color-text-muted); }
-.team-stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--font-size-sm); color: var(--color-text-muted); }
-.team-stats > div { min-width: 0; }
-.team-stats strong { color: var(--color-text); display: block; font-size: var(--font-size-lg); }
+.team-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+.team-stats > div {
+  min-width: 0;
+  text-align: center;
+  padding: var(--space-2) var(--space-1);
+  background: var(--color-surface-2);
+  border-radius: var(--radius-sm);
+}
+.team-stats strong {
+  display: block;
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
 
 .settings-form { display: flex; flex-direction: column; gap: var(--space-5); max-width: 560px; }
 .settings-section { display: flex; flex-direction: column; gap: var(--space-3); }
