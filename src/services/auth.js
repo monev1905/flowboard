@@ -46,6 +46,15 @@ export function logout() {
   emit()
 }
 
+export function updateSession(patch) {
+  const current = getSession()
+  if (!current) return null
+  const next = { ...current, ...patch }
+  storage.set(SESSION_KEY, next)
+  emit()
+  return next
+}
+
 export function subscribe(fn) {
   listeners.add(fn)
   return () => listeners.delete(fn)
