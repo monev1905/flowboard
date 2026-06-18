@@ -1,0 +1,88 @@
+:root {
+  --color-bg: #f7f8fb;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f3f9;
+  --color-border: #e4e7ee;
+  --color-text: #1c1f26;
+  --color-text-muted: #5b6271;
+  --color-text-subtle: #8a93a4;
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-soft: #e6e4ff;
+  --color-success: #16a34a;
+  --color-success-soft: #dcfce7;
+  --color-warning: #d97706;
+  --color-warning-soft: #fef3c7;
+  --color-danger: #dc2626;
+  --color-danger-soft: #fee2e2;
+  --color-info: #0284c7;
+  --color-info-soft: #e0f2fe;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 4px 14px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 12px 32px rgba(16, 24, 40, 0.12);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 28px;
+
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+
+  --sidebar-width: 240px;
+  --topbar-height: 60px;
+
+  --focus-ring: 0 0 0 3px rgba(79, 70, 229, 0.35);
+}
+
+[data-theme="dark"] {
+  --color-bg: #0f1117;
+  --color-surface: #181b25;
+  --color-surface-2: #1f2230;
+  --color-border: #2a2e3d;
+  --color-text: #e6e8ee;
+  --color-text-muted: #a4abbb;
+  --color-text-subtle: #6e768a;
+  --color-primary: #818cf8;
+  --color-primary-hover: #a5b0ff;
+  --color-primary-soft: #2a2645;
+  --color-success: #4ade80;
+  --color-success-soft: #133b22;
+  --color-warning: #fbbf24;
+  --color-warning-soft: #3b2c0c;
+  --color-danger: #f87171;
+  --color-danger-soft: #3b1717;
+  --color-info: #38bdf8;
+  --color-info-soft: #0c2d3d;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --focus-ring: 0 0 0 3px rgba(129, 140, 248, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
