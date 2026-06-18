@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Local env
+.env
+.env.local
+
+# Editor / OS
+.DS_Store
+*.log
+
+# AI tooling (never publish)
+.claude/
