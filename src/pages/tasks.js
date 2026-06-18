@@ -59,7 +59,7 @@ export function renderTasks({ route } = {}) {
       }),
       el('select', {
         class: 'select', 'aria-label': 'Filter by project', value: pageState.projectId,
-        onChange: (e) => { pageState.projectId = e.target.value; updateRouteQuery(); rerender() },
+        onChange: (e) => { pageState.projectId = e.target.value; updateRouteQuery() },
       }, [
         el('option', { value: 'all' }, 'All projects'),
         ...projects.map((p) => el('option', { value: p.id, selected: p.id === pageState.projectId }, p.name)),
