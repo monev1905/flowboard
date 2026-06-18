@@ -1,129 +1,142 @@
 # FlowBoard
 
-A responsive team task management dashboard built with vanilla JavaScript, CSS, and Vite. FlowBoard ships a complete UI for managing projects, tasks, and a small team — including a drag-and-drop kanban board, charts, mock authentication, and persistent local data.
+FlowBoard is a responsive task and project dashboard for small teams that need one place to see work in progress, manage priorities, and keep projects moving. It is a static frontend demo with realistic sample data, mock sign-in, drag-and-drop tasks, project tracking, team workload views, and settings that persist on the device.
+
+![FlowBoard dashboard on desktop](docs/screenshots/dashboard-desktop.png)
+
+## Links
+
+| Resource | Status |
+| --- | --- |
+| Repository | <https://github.com/monev1905/flowboard> |
+| Live demo | TBD |
 
 ## Highlights
 
-- Mobile-first responsive layout (320 px / 768 px / 1200 px).
-- Drag-and-drop kanban with priority, status, assignee, project, and due-date filters.
-- Project board with CRUD, archive, search, progress, and team rosters.
-- Dashboard with stat cards, team-workload bar chart, and task-status doughnut.
-- Mock authentication with persistent session and "remember me".
-- Light / dark / system theme, persisted in `localStorage`.
-- Accessible by default: semantic HTML, ARIA labels, keyboard focus rings, skip patterns.
-- Toast notifications for task completion, creation, deletion, and theme changes.
-- Zero runtime errors, Lighthouse-friendly bundle (chart and sortable code-split).
-
-## Tech stack
-
-| Concern              | Choice                                       |
-| -------------------- | -------------------------------------------- |
-| Build tool           | [Vite 5](https://vitejs.dev)                 |
-| Language             | JavaScript (ES2020+, ES modules)             |
-| Charts               | [Chart.js 4](https://www.chartjs.org)        |
-| Drag and drop        | [SortableJS](https://sortablejs.github.io/Sortable/) |
-| Styling              | Hand-written CSS with design tokens          |
-| Persistence          | `localStorage` (JSON-serialised state)       |
-| Routing              | Hash-based, framework-free                   |
-
-No backend, no framework runtime — the entire SPA is shipped as a small set of static assets.
-
-## Getting started
-
-```bash
-# install dependencies (once)
-npm install
-
-# start the dev server on http://localhost:5173
-npm run dev
-
-# build for production (output: ./dist)
-npm run build
-
-# preview the production build on http://localhost:4173
-npm run preview
-```
-
-### Demo credentials
-
-```
-email:    demo@flowboard.app
-password: demo1234
-```
-
-The login form is prefilled in development.
-
-## Feature tour
-
-1. **Sign in** with the demo credentials. Sessions persist across reloads when "Remember me" is enabled.
-2. **Dashboard** — see active projects, completed tasks, overdue items, team productivity, plus an activity feed.
-3. **Projects** — create, edit, archive, search, and filter projects. Each card shows progress, assigned members, and due date.
-4. **Tasks** — kanban board with `Backlog`, `In progress`, `Review`, and `Completed` lanes. Drag cards between columns to update status; use the toolbar to search, filter by project / priority / assignee, and sort.
-5. **Team** — workload overview for every member, including open, completed, overdue, and project counts.
-6. **Settings** — swap theme, edit profile, toggle notification preferences, reset demo data, or sign out.
-
-All edits persist immediately to `localStorage` under the `flowboard:` key prefix.
-
-## Architecture
-
-```
-src/
-├── components/     reusable UI: layout, modal, toasts, charts
-├── data/           seed mock data
-├── pages/          one render() per route (dashboard, projects, tasks, team, settings, login)
-├── services/       store, storage, auth, router, theme — pure modules, no framework
-├── styles/         design tokens, base, components, layout (CSS only)
-├── utils/          DOM helpers, formatters
-└── main.js         entry: wires router, store, auth, and shell
-```
-
-The renderer is a small function composition: each page returns a `Node`, the app shell wraps it, and `main.js` swaps it into `#app` whenever the route, session, or store changes. State mutations are funnelled through `services/store.js`, which persists to `localStorage` and emits change events so the UI stays in sync.
-
-## Accessibility
-
-- Every interactive control is reachable by keyboard.
-- Visible focus rings via `:focus-visible`.
-- ARIA roles on dialogs (`role="dialog"`, `aria-modal="true"`), the navigation, charts (`role="img"`), and the toast region (`aria-live="polite"`).
-- `prefers-reduced-motion` is respected for animations.
-- Forms label every input and surface validation errors inline.
-
-## Performance
-
-- Chart.js and SortableJS are code-split into their own chunks so they only load when first needed.
-- CSS is hand-rolled — no utility framework runtime.
-- Images and icons are inline SVG.
-- Production build is `< 80 kB gzipped` (chart chunk is the heaviest dependency).
+- See the health of the workspace at a glance with project totals, completed work, overdue tasks, productivity, charts, recent tasks, and activity.
+- Drag tasks between Backlog, In progress, Review, and Completed columns to update status immediately.
+- Create, edit, archive, search, and filter projects with visible progress, due dates, and assigned team members.
+- Filter and sort tasks by project, priority, assignee, due date, and search text.
+- Review each team member's workload, completed work, overdue tasks, and project count.
+- Switch between light, dark, and system themes, update the demo profile, and configure notification preferences.
+- Use the same app comfortably on desktop, tablet, and phone layouts.
+- Keep demo data and user preferences in `localStorage`, so changes survive a refresh without a backend.
 
 ## Screenshots
 
-| Surface  | Preview                                          |
-| -------- | ------------------------------------------------ |
-| Desktop  | `docs/screenshots/desktop.png` _(placeholder)_   |
-| Tablet   | `docs/screenshots/tablet.png` _(placeholder)_    |
-| Mobile   | `docs/screenshots/mobile.png` _(placeholder)_    |
+### Dashboard
 
-Drop your captures into `docs/screenshots/` to populate the table above.
+| Desktop | Tablet | Mobile |
+| --- | --- | --- |
+| ![Dashboard desktop](docs/screenshots/dashboard-desktop.png) | ![Dashboard tablet](docs/screenshots/dashboard-tablet.png) | ![Dashboard mobile](docs/screenshots/dashboard-mobile.png) |
 
-## Deployment
+### Task Board
 
-The build output in `dist/` is fully static — drop it onto GitHub Pages, Netlify, Vercel, or any static host.
+| Desktop | Tablet | Mobile |
+| --- | --- | --- |
+| ![Tasks desktop](docs/screenshots/tasks-desktop.png) | ![Tasks tablet](docs/screenshots/tasks-tablet.png) | ![Tasks mobile](docs/screenshots/tasks-mobile.png) |
+
+### Main Workflow Screens
+
+| Sign in | Projects | Team | Settings |
+| --- | --- | --- | --- |
+| ![Login desktop](docs/screenshots/login-desktop.png) | ![Projects desktop](docs/screenshots/projects-desktop.png) | ![Team desktop](docs/screenshots/team-desktop.png) | ![Settings desktop](docs/screenshots/settings-desktop.png) |
+
+## Tech Stack
+
+| Area | Implementation |
+| --- | --- |
+| Build tool | Vite 5 |
+| Language | HTML, CSS, JavaScript ES modules |
+| Charts | Chart.js |
+| Drag and drop | SortableJS |
+| Routing | Hash-based client-side routes |
+| State | Small custom store persisted to `localStorage` |
+| Styling | Hand-written CSS with design tokens |
+| Test data | Local seed data in `src/data/seed.js` |
+
+No backend is required. The production build is static and can be hosted from any static file platform.
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+The dev server runs at `http://localhost:5173`.
 
 ```bash
 npm run build
-# upload ./dist to your host of choice
+npm run preview
 ```
 
-The Vite config uses a relative `base: './'` so the bundle works from any subdirectory (handy for GitHub Pages user/project sites).
+The preview server runs at `http://localhost:4173`.
 
-## Roadmap
+To refresh the README screenshots after starting `npm run preview`:
 
-The PRD calls out a few future enhancements that are out of scope for the current build:
+```bash
+npm run screenshots
+```
 
-- Migrate to React or another framework.
-- Wire up a real backend and real-time updates.
-- Add calendar / Gantt views.
-- File uploads and team chat.
+## Demo Credentials
 
-## License
+```text
+email: demo@flowboard.app
+password: demo1234
+```
 
-MIT — see `LICENSE` (or use however suits you for portfolio review).
+The login form is prefilled with the demo account.
+
+## Feature Map
+
+| PRD area | Implemented surface |
+| --- | --- |
+| Mock authentication | Sign-in screen, remembered session, sign out |
+| Dashboard | KPI cards, workload chart, task status chart, recent tasks, activity feed |
+| Project management | Project cards, create/edit modal, archive/delete flow, search and status filters |
+| Task management | Kanban board, create/edit/delete modal, priority/status/assignee/due-date fields, search/filter/sort controls, drag-and-drop status changes |
+| Team management | Member cards with roles, initials, open/completed/overdue/project counts |
+| Notifications | Toasts for sign-in, project/task actions, profile and theme updates |
+| Settings | Theme choice, profile editing, notification toggles, demo reset, sign out |
+| Responsive design | Verified screenshot set at 1440x900, 768x1024, and 375x812 viewports |
+
+## Architecture
+
+```text
+src/
+  components/  layout, modal, toast, and chart helpers
+  data/        seeded members, projects, tasks, and activity
+  pages/       login, dashboard, projects, tasks, team, settings
+  services/    auth, router, storage, store, theme
+  styles/      tokens, base rules, components, responsive layout
+  utils/       DOM helpers and formatting utilities
+```
+
+`src/main.js` wires together routing, authentication, theme preferences, and the app shell. Each page exports a render function that returns DOM nodes. State changes go through `src/services/store.js`, which writes JSON state to the `flowboard:` localStorage keys and notifies the active view to rerender.
+
+## Quality Notes
+
+- `npm run build` completes successfully and produces static files in `dist/`.
+- The Vite build separates Chart.js and SortableJS into their own production chunks.
+- Forms use labels, dialogs use modal roles, charts include image roles, and toast messages use a polite live region.
+- Keyboard focus styling and reduced-motion rules are defined in the CSS.
+- Preferences, session data, projects, tasks, and activity persist locally between refreshes.
+- Real screenshots are stored in `docs/screenshots/` for desktop, tablet, and mobile review.
+
+## Deployment
+
+Build the app and upload the `dist/` folder to GitHub Pages, Netlify, Vercel, or another static host:
+
+```bash
+npm run build
+```
+
+`vite.config.js` uses `base: './'`, so the compiled app can run from a subdirectory as well as a domain root.
+
+## Future Enhancements
+
+- Connect the dashboard to a real backend and authenticated user accounts.
+- Add calendar or Gantt views for deadline planning.
+- Add file attachments and team discussion threads.
+- Add a hosted demo URL, Lighthouse report, and short product walkthrough video.
