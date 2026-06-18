@@ -46,7 +46,7 @@ function render() {
 subscribeRoute(render)
 subscribeAuth(render)
 store.subscribe(render)
-onPreferencesChange(() => { /* theme applied via attribute, chart redraws naturally on next render */ })
+onPreferencesChange(render)
 document.addEventListener('shell:rerender', render)
 
 if (!window.location.hash) {
